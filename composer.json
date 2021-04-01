@@ -1,5 +1,5 @@
 {
-    "name": "the-life-project/bugsnag-logger",
+    "name": "intrepidws/bugsnag-logger",
     "require": {
         "bugsnag/bugsnag": "^3.0"
     }
