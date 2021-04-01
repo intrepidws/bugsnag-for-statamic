@@ -16,11 +16,13 @@ class BugsnagLogger extends \Statamic\Exceptions\Handler
 	public function report(Exception $e)
 	{
 		// New up the bugsnag client if needed.
-		if( empty($this->bugsnag) AND $apikey = $this->getConfig('bugsnag_apikey') )
+		if (empty($this->bugsnag) AND $apikey = $this->getConfig('bugsnag_apikey')) {
 			$this->bugsnag = \Bugsnag\Client::make( $apikey );
+		}
 
-		if( ! empty($this->bugsnag) )
+		if (! empty($this->bugsnag) && $this->shouldReport($e)) {
 			$this->bugsnag->notifyException($e);
+		}
 
 		parent::report($e);
 	}
